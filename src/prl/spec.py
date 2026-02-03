@@ -23,5 +23,5 @@ class RunSpec(BaseModel):
     tasks: list[Task]
     outputs: list[RunResult] = Field(default_factory=list)
     evaluator: EvalConfig = Field(default_factory=EvalConfig)
-    model_config: dict[str, Any] = Field(default_factory=dict)
+    execution_config: dict[str, Any] = Field(default_factory=dict, alias="model_config")
     optimize_config: dict[str, Any] = Field(default_factory=dict)
