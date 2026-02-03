@@ -1,6 +1,6 @@
 # Roadmap (Draft)
 
-## MVP
+## Current phase
 
 - Skill I/O specification
 - Core data model
@@ -8,7 +8,7 @@
 - LLM-as-judge evaluator
 - Minimal CLI
 
-## Post-MVP (document only)
+## Later (document only)
 
 - Policy/YAML optimization
 - Agent skill policy optimization

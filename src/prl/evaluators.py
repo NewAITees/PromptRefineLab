@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-import re
 import json
+import re
 from dataclasses import dataclass
 from typing import Any
 
@@ -74,14 +74,14 @@ class LLMAsJudgeEvaluator(Evaluator):
 
     def score(self, *, expected: str, output: str, rule: dict[str, Any] | str) -> EvalOutcome:
         if self.judge_prompt:
-            prompt = (
-                self.judge_prompt.replace("{{expected}}", expected).replace("{{output}}", output)
+            prompt = self.judge_prompt.replace("{{expected}}", expected).replace(
+                "{{output}}", output
             )
         else:
             prompt = (
-            "Compare expected vs output and return JSON only: "
-            '{"score": 0.0-1.0, "reason": "short"}.\n'
-            f"EXPECTED:\n{expected}\nOUTPUT:\n{output}"
+                "Compare expected vs output and return JSON only: "
+                '{"score": 0.0-1.0, "reason": "short"}.\n'
+                f"EXPECTED:\n{expected}\nOUTPUT:\n{output}"
             )
         request = LLMRequest(
             prompt=prompt,

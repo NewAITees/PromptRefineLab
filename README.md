@@ -11,13 +11,13 @@ Short name (CLI/internal): `prl`
 - Documentation-first: environment setup and project conventions only.
 - Core Skill, CLI, and Desktop app are not implemented yet.
 
-## Goals (MVP)
+## Goals (Current Phase)
 
 - Provide a minimal Skill that can validate, evaluate, and optimize candidates.
 - Expose the Skill via a CLI that works without any Desktop app.
 - Keep UI and persistence out of the Skill; treat them as separate layers.
 
-## Stack (MVP)
+## Stack (Current Phase)
 
 - Language/runtime: Python 3.11+
 - Package manager: `uv`
@@ -40,3 +40,4 @@ Start here: `docs/ENVIRONMENT.md`
 - `docs/ROADMAP.md`
 - `docs/SKILL_SPEC.md`
 - `docs/examples/run.yaml`
+- `docs/PLAN.md`

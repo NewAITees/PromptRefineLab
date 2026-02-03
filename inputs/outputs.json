@@ -1,0 +1,4 @@
+[
+  {"candidate_id": "c1", "task_id": "t1", "output": "Four"},
+  {"candidate_id": "c2", "task_id": "t1", "output": "4"}
+]

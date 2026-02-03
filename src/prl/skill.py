@@ -79,7 +79,9 @@ def evaluate(spec: RunSpec) -> EvaluateResult:
         if task is None:
             run_results.append(output.model_copy(update={"score": 0.0, "error": "task_not_found"}))
             continue
-        outcome = evaluator.score(expected=task.expected, output=output.output, rule=task.judge_rule)
+        outcome = evaluator.score(
+            expected=task.expected, output=output.output, rule=task.judge_rule
+        )
         run_results.append(output.model_copy(update={"score": outcome.score}))
 
     candidate_scores: dict[str, list[float]] = {c.id: [] for c in spec.candidates}
@@ -102,7 +104,9 @@ def evaluate(spec: RunSpec) -> EvaluateResult:
     for rank, row in enumerate(leaderboard, start=1):
         row["rank"] = rank
 
-    return EvaluateResult(run_results=run_results, candidates=scored_candidates, leaderboard=leaderboard)
+    return EvaluateResult(
+        run_results=run_results, candidates=scored_candidates, leaderboard=leaderboard
+    )
 
 
 def optimize(spec: RunSpec) -> OptimizeResult:

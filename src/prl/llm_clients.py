@@ -89,4 +89,3 @@ def call_gemini(req: LLMRequest) -> str:
     }
     response = _post_json(url, payload, headers)
     return response["candidates"][0]["content"]["parts"][0]["text"]
-

@@ -1,4 +1,4 @@
-# Skill Specification (MVP)
+# Skill Specification (Current Phase)
 
 The Skill operates on *data only* and does not handle UI or persistence. The CLI is responsible for file I/O.
 
@@ -54,7 +54,7 @@ score
 error
 ```
 
-## Evaluators (MVP)
+## Evaluators (Current Phase)
 
 - Rule-based: implemented (exact/regex/numeric)
 - LLM-as-judge: implemented (OpenAI, Anthropic, Gemini, Ollama)

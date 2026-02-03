@@ -8,7 +8,9 @@ from uuid import uuid4
 import typer
 
 from .io import load_data, save_json
-from .skill import evaluate, optimize, validate_spec
+from .skill import evaluate as skill_evaluate
+from .skill import optimize as skill_optimize
+from .skill import validate_spec
 from .spec import RunSpec
 
 app = typer.Typer(add_completion=False, no_args_is_help=True)
@@ -58,7 +60,7 @@ def evaluate(config: Path) -> None:
             typer.echo(f"error: {err}")
         raise typer.Exit(code=1)
 
-    result = evaluate(spec)
+    result = skill_evaluate(spec)
     run_dir = _make_run_dir()
 
     save_json(run_dir / "results.json", [r.model_dump() for r in result.run_results])
@@ -85,14 +87,17 @@ def optimize(config: Path, steps: int = typer.Option(5, min=1)) -> None:
             typer.echo(f"error: {err}")
         raise typer.Exit(code=1)
 
-    result = optimize(spec)
+    result = skill_optimize(spec)
     run_dir = _make_run_dir()
 
     save_json(run_dir / "results.json", [r.model_dump() for r in result.run_results])
     save_json(run_dir / "leaderboard.json", result.leaderboard)
 
+    best_candidate_json = json.dumps(
+        result.best_candidate.model_dump(), indent=2, ensure_ascii=False
+    )
     report_sections = [
-        ("Best Candidate", json.dumps(result.best_candidate.model_dump(), indent=2, ensure_ascii=False)),
+        ("Best Candidate", best_candidate_json),
         ("Diff", result.diff or "(no diff)"),
     ]
     _write_report(run_dir / "report.md", "Optimization Report", report_sections)

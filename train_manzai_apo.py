@@ -22,7 +22,6 @@ from typing import TypedDict
 
 import ollama
 
-
 # ============================================================
 # 設定
 # ============================================================
@@ -181,7 +180,8 @@ def generate_feedback(
             f"generated (excerpt): {e.generated[:200]}..."
         )
 
-    feedback_prompt = f"""以下は漫才生成の評価結果です。これを分析して、プロンプトの改善点を具体的に提案してください。
+    feedback_prompt = f"""以下は漫才生成の評価結果です。これを分析して、
+プロンプトの改善点を具体的に提案してください。
 
 【評価結果】:
 {chr(10).join(eval_summary)}
@@ -313,9 +313,7 @@ def train_apo(
 
         # 1. 評価
         print("  [EVAL] Evaluating...")
-        evaluations = run_evaluation_round(
-            client, current_prompt, tasks, samples_per_round
-        )
+        evaluations = run_evaluation_round(client, current_prompt, tasks, samples_per_round)
 
         if not evaluations:
             print("  [ERROR] No evaluation results, skipping")
@@ -459,8 +457,7 @@ def main() -> None:
             "avg_score": r.avg_score,
             "prompt": r.prompt,
             "evaluations": [
-                {"topic": e.topic, "score": e.score, "reason": e.reason}
-                for e in r.evaluations
+                {"topic": e.topic, "score": e.score, "reason": e.reason} for e in r.evaluations
             ],
         }
         for r in history
