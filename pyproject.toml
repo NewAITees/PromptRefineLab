@@ -1,0 +1,25 @@
+[project]
+name = "promptrefinelab"
+version = "0.0.1"
+description = "PromptRefineLab core Skill and CLI"
+requires-python = ">=3.11"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "PromptRefineLab contributors" }]
+keywords = ["prompts", "optimization", "llm", "evaluation"]
+
+dependencies = [
+  "pydantic>=2.6",
+  "pyyaml>=6.0",
+  "typer>=0.12",
+]
+
+[project.scripts]
+prl = "prl.cli:app"
+
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/prl"]
